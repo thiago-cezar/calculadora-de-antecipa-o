@@ -1,5 +1,5 @@
 import Aside from "../../components/aside";
-import Form from "../../components/section";
+import Form from "../../components/form";
 import "./style.scss";
 export default function Dashboard() {
   return (

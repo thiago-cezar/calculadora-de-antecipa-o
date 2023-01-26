@@ -32,7 +32,6 @@ const AuthProvider = ({ children }: IChildrenProps) => {
     await api
       .post("", data)
       .then((res) => {
-        console.log(res.data);
         setValueRec(res.data);
       })
       .catch((err) => console.log(err));

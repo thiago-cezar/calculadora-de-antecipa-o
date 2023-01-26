@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 import "./style.scss";
 
 export default function Aside() {
+  
   const { valueRec } = useContext(AuthContext);
   return (
     <aside className="aside">

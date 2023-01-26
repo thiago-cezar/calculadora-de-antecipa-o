@@ -1,4 +1,5 @@
 $blue: rgb(88, 137, 196);
+$white: rgb(255, 255, 255);
 
 .aside {
   display: flex;
@@ -29,3 +30,14 @@ $blue: rgb(88, 137, 196);
     }
   }
 }
+@media (max-width: 520px) {
+  .aside {
+    width: 100%;
+    background-color: $white;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+}
+
+
+
