@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
+import { toast } from "react-hot-toast";
 import api from "../services/api";
 
 interface IChildrenProps {
@@ -33,8 +34,9 @@ const AuthProvider = ({ children }: IChildrenProps) => {
       .post("", data)
       .then((res) => {
         setValueRec(res.data);
+        toast.success("Sucesso");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(err.message));
   };
   return (
     <AuthContext.Provider value={{ send, valueRec }}>

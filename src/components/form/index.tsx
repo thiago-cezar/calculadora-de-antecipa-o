@@ -20,13 +20,20 @@ export default function Form() {
         <h1 className="header">Simule sua Antecipação</h1>
         <label className="label">
           Informe o valor da venda {errors.amount?.message}
-          <input type="number" id="amount" min={1000} {...register("amount")} />
+          <input
+            type="number"
+            id="amount"
+            min={1000}
+            required
+            {...register("amount")}
+          />
         </label>
         <label className="label">
           Em quantas parcelas {errors.installments?.message}
           <input
             type="number"
             id="installments"
+            required
             min={1}
             max={12}
             onFocus={() => setIsFocused(true)}
@@ -41,7 +48,7 @@ export default function Form() {
         </label>
         <label className="label">
           Informe o percentual MRD {errors.mdr?.message}
-          <input type="number" id="mdr" min={1} {...register("mdr")} />
+          <input type="number" id="mdr" min={1} required {...register("mdr")} />
         </label>
         <button type="submit" />
       </form>
