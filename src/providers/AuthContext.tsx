@@ -1,44 +1,41 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, useState } from "react";
+import {
+  IAuthContext,
+  Icalc,
+  IcalcRecived,
+  IChildrenProps,
+} from "../interfaces/interfaces";
 import api from "../services/api";
-
-interface IChildrenProps {
-  children: ReactNode;
-}
-
-export interface Icalc {
-  amount: number;
-  installments: number;
-  mdr: number;
-}
-
-export interface IcalcRecived {
-  1: number;
-  15: number;
-  30: number;
-  90: number;
-}
-
-interface IAuthContext {
-  send: (data: Icalc) => Promise<void>;
-  valueRec: IcalcRecived | undefined;
-}
 
 export const AuthContext = createContext({} as IAuthContext);
 
 const AuthProvider = ({ children }: IChildrenProps) => {
-  const [valueRec, setValueRec] = useState();
+  const [valueRec, setValueRec] = useState({} as IcalcRecived);
+  const [sendV, setSendV] = useState({
+    value: 1,
+    value2: 15,
+    value3: 30,
+    value4: 90,
+  } as IcalcRecived);
 
   const send = async (data: Icalc) => {
+    data.days = [sendV.value, sendV.value2, sendV.value3, sendV.value4];
+    console.log(data);
     await api
       .post("", data)
       .then((res) => {
-        console.log(res.data);
-        setValueRec(res.data);
+        const resData: IcalcRecived = {
+          value: res.data[`${sendV.value}`],
+          value2: res.data[`${sendV.value2}`],
+          value3: res.data[`${sendV.value3}`],
+          value4: res.data[`${sendV.value4}`],
+        };
+        setValueRec(resData);
       })
       .catch((err) => console.log(err));
   };
   return (
-    <AuthContext.Provider value={{ send, valueRec }}>
+    <AuthContext.Provider value={{ send, valueRec, setSendV, sendV }}>
       {children}
     </AuthContext.Provider>
   );

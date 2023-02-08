@@ -3,7 +3,7 @@ import { AuthContext } from "../../providers/AuthContext";
 import "./style.scss";
 
 export default function Aside() {
-  const { valueRec } = useContext(AuthContext);
+  const { valueRec, sendV } = useContext(AuthContext);
   return (
     <aside className="aside">
       <div>
@@ -11,20 +11,52 @@ export default function Aside() {
       </div>
       <h3>
         Amanhã:
-        <strong>R$ {valueRec?.[1].toFixed(2) || "0.00"}</strong>
+        <strong>R$ {valueRec?.value?.toFixed(2) || "0.00"}</strong>
       </h3>
       <h3>
-        Em 15 dias:
-        <strong>R$ {valueRec?.[15].toFixed(2) || "0.00"}</strong>
+        Em
+        <input
+          type="number"
+          defaultValue={15}
+          min="1"
+          className="SelectDays"
+          onChange={(value) => {
+            sendV.value2 = Number(value.target.value);
+          }}
+        />
+        dias:
+        <strong>R$ {valueRec?.value2?.toFixed(2) || "0.00"}</strong>
       </h3>
       <h3>
-        Em 30 dias:
-        <strong>R$ {valueRec?.[30].toFixed(2) || "0.00"}</strong>
+        Em
+        <input
+          type="number"
+          defaultValue={30}
+          min="1"
+          className="SelectDays"
+          onChange={(value) => {
+            sendV.value3 = Number(value.target.value);
+          }}
+        />
+        dias:
+        <strong>R$ {valueRec?.value3?.toFixed(2) || "0.00"}</strong>
       </h3>
       <h3>
-        Em 90 dias:
-        <strong>R$ {valueRec?.[90].toFixed(2) || "0.00"}</strong>
+        Em
+        <input
+          type="number"
+          defaultValue={90}
+          min="1"
+          className="SelectDays"
+          onChange={(value) => {
+            sendV.value4 = Number(value.target.value);
+            console.log(sendV);
+          }}
+        />
+        dias:
+        <strong>R$ {valueRec?.value4?.toFixed(2) || "0.00"}</strong>
       </h3>
+      <span className="notice">Altere os dias conforme desejado.</span>
     </aside>
   );
 }
