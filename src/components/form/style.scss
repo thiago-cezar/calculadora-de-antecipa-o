@@ -24,7 +24,22 @@ $blue: rgb(88, 137, 196);
   gap: 30px;
   border-radius: 5px;
   button {
-    display: none;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: none;
+    background-color: $blue;
+    color: $white;
+    font-size: 16px;
+    padding: 6px;
+    font-weight: 600;
+    border:2px solid $blue;
+    cursor: pointer;
+    &:hover {
+      transition: 0.5s;
+      background-color: $white;
+      color: $blue;
+    }
   }
 }
 .header {

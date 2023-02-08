@@ -55,3 +55,14 @@ $white: rgb(255, 255, 255);
     padding-bottom: 50px;
   }
 }
+@media (max-width: 520px) {
+  .aside {
+    width: 100%;
+    background-color: $white;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+}
+
+
+

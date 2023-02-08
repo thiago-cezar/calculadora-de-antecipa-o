@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import toast from "react-hot-toast";
 import {
   IAuthContext,
   Icalc,
@@ -32,7 +33,7 @@ const AuthProvider = ({ children }: IChildrenProps) => {
         };
         setValueRec(resData);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(err.message));
   };
   return (
     <AuthContext.Provider value={{ send, valueRec, setSendV, sendV }}>
